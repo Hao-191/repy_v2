@@ -1,15 +1,25 @@
-# Clean up environment
-if "criticalfile.a" in listfiles():
-    removefile("criticalfile.a")
+#if file exists, clean up
+if "testfile.txt.a" in listfiles():
+  removefile("testfile.txt.a")
+if "testfile.txt.b" in listfiles():
+  removefile("testfile.txt.b")
 
-# Simulate creating the file with proper authorization
-myfile = ABopenfile("criticalfile", True)
+#Create an AB file
+myfile=ABopenfile("testfile.txt",True)  
+# put some valid data in the file.
+
+myfile.writeat("Stest12345E",0)
+
+#Close the file
 myfile.close()
 
-# Attack: Attempt to delete the file without proper authorization
+myfile=ABopenfile("testfile.txt",True)
 try:
-    removefile("criticalfile.a")  # Assuming this should be restricted
-    log("Attack succeeded: Unauthorized file deletion was possible.")
-except Exception as e:
-    log("Attack failed: " + str(e))
-    assert False, "Attack should have succeeded"
+# valid write works...
+	assert('Stest12345E' == myfile.readat(None,0))
+	#Close the file
+	myfile.close()
+except:
+	#Close the file
+	log("Valid data not written in file. Accuracy test failed.")
+	myfile.close()
