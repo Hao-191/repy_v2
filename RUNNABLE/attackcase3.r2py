@@ -1,0 +1,24 @@
+#security test-invalid write operation
+#if file exists, clean up
+if "testfile.txt.a" in listfiles():
+  removefile("testfile.txt.a")
+if "testfile.txt.b" in listfiles():
+  removefile("testfile.txt.b")
+
+#Create an AB file
+myfile=ABopenfile("testfile.txt",True)  
+myfile.writeat("Ender",0)
+
+#Close the file
+myfile.close()
+
+#Create an AB file
+myfile=ABopenfile("testfile.txt",True)
+
+try:
+# invalid write does not work...
+	assert('SE'==myfile.readat(None,0))
+	myfile.close()
+except:
+	raise AssertionError("Invalid write to file. Security test failed")
+	myfile.close()
