@@ -1,0 +1,18 @@
+# Prepare test environment
+if "testfile.a" in listfiles():
+    removefile("testfile.a")
+if "testfile.b" in listfiles():
+    removefile("testfile.b")
+
+myfile = ABopenfile("testfile", True)
+
+# Write to the B file and check consistency
+try:
+    test_data = "Hello"
+    myfile.writeat(test_data, 0)  # Write 'Hello' at the start
+    read_data = myfile.readat(5, 0)  # Read 5 bytes from file A
+    assert read_data == test_data, "Mismatch between written and read data"
+    myfile.close()
+except:
+    myfile.close()
+    log("Failed to write to or read from the B file")
