@@ -7,10 +7,15 @@ if "testfile.b" in listfiles():
 # Create a new ABFile
 myfile = ABopenfile("testfile", True)
 
-# Check that the new file contains the initial contents 'SE'
+# Write to the B file and check consistency
 try:
-    assert 'SE' == myfile.readat(2, 0), "Initial content 'SE' not found in file A"
+    test_data = "Hello"
+    # Write 'Hello' at the start
+    myfile.writeat(test_data, 0)
+    # Read 5 bytes from file A  
+    read_data = myfile.readat(5, 0)  
+    assert read_data == test_data, "Mismatch between written and read data"
     myfile.close()
 except:
     myfile.close()
-    log("Failed to create file or read initial contents 'SE'")
+    log("Failed to write to or read from the B file")

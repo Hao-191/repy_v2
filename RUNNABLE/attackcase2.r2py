@@ -7,15 +7,16 @@ if "testfile.b" in listfiles():
 # Create a new ABFile
 myfile = ABopenfile("testfile", True)
 
-# Write to the B file and check consistency
+# Write some data and close the file
 try:
-    test_data = "Hello"
-    # Write 'Hello' at the start
-    myfile.writeat(test_data, 0)
-    # Read 5 bytes from file A  
-    read_data = myfile.readat(5, 0)  
-    assert read_data == test_data, "Mismatch between written and read data"
+    # Write 'StartEnd' assuming this triggers the backup condition
+    myfile.writeat("StartEnd", 0)  
     myfile.close()
+    # After closure, verify if backup was successful
+    backupfile = openfile("testfile.a", False)
+    backup_content = backupfile.readat(None, 0)
+    assert backup_content == "StartEnd", "Backup file content mismatch"
+    backupfile.close()
 except:
     myfile.close()
-    log("Failed to write to or read from the B file")
+    log("File closure did not perform backup correctly")
