@@ -1,3 +1,4 @@
+# if file exists, clean up
 if "testfile.txt.a" in listfiles():
   removefile("testfile.txt.a")
 if "testfile.txt.b" in listfiles():
@@ -11,12 +12,12 @@ myfile2=ABopenfile("stestfile.txt",True)
 # put some valid data in the file.
 myfile.writeat(" Stest12345E",0)
 myfile.writeat("Stest12345E",5)
-myfile.writeat("SorryBiotch!",0)
-myfile.writeat("SorryBiootch!E",12)
+myfile.writeat("Superman!",0)
+myfile.writeat("Super!E",12)
 
 
-myfile2.writeat("SoVeryVerySorE",0)
-myfile2.writeat("SoVeryySorE",0)
+myfile2.writeat("SSorE",0)
+myfile2.writeat("SSorE",0)
 myfile2.close()
 
 myfile.close()

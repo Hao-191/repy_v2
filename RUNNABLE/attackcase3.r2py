@@ -1,4 +1,3 @@
-# read operation conditions
 # if file exists, clean up
 if "testfile.txt.a" in listfiles():
   removefile("testfile.txt.a")
