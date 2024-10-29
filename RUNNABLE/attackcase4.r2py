@@ -9,7 +9,6 @@ if "testfile.txt.b" in listfiles():
 try:
     # Create an AB file
 	myfile=ABopenfile("testfile.txt",True) 
-
 	myfile.writeat("",0)
 	assert('SE' == myfile.readat(None,0))
 	# Close the file
