@@ -1,16 +1,19 @@
-# Prepare test environment
+# Clean up existing files
 if "testfile.a" in listfiles():
     removefile("testfile.a")
 if "testfile.b" in listfiles():
     removefile("testfile.b")
 
+# Create a new ABFile
 myfile = ABopenfile("testfile", True)
 
 # Write to the B file and check consistency
 try:
     test_data = "Hello"
-    myfile.writeat(test_data, 0)  # Write 'Hello' at the start
-    read_data = myfile.readat(5, 0)  # Read 5 bytes from file A
+    # Write 'Hello' at the start
+    myfile.writeat(test_data, 0)
+    # Read 5 bytes from file A  
+    read_data = myfile.readat(5, 0)  
     assert read_data == test_data, "Mismatch between written and read data"
     myfile.close()
 except:
