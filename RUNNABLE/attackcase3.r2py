@@ -1,17 +1,21 @@
-# write operation conditions
+# read operation conditions
 # if file exists, clean up
 if "testfile.txt.a" in listfiles():
   removefile("testfile.txt.a")
 if "testfile.txt.b" in listfiles():
   removefile("testfile.txt.b")
 
-# Create an AB file
+#Create an AB file
 myfile=ABopenfile("testfile.txt",True)  
+# put some valid data in the file.
+myfile.writeat("Stest12345E",0)
+myfile.close()
+myfile=ABopenfile("testfile.txt",True)
 
 try:
-# invalid write does not work...
-        myfile.writeat("SEnderE",-1)
+# invalid read does not work...
+	myfile.readat(None,-1)
 	myfile.close()
 except:
-	raise AssertionError("Negative offset in write operation")
+	raise Exception("Negative offset in read operation")
 	myfile.close()
