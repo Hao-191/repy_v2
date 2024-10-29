@@ -1,20 +1,18 @@
-# file close operation
-
+# read operation conditions
 # if file exists, clean up
 if "testfile.txt.a" in listfiles():
   removefile("testfile.txt.a")
 if "testfile.txt.b" in listfiles():
   removefile("testfile.txt.b")
-
+  
 # Create an AB file
-myfile=ABopenfile("testfile.txt",True)  
+myfile = ABopenfile("testfile.txt/0", True)
 
-myfile.writeat("Stest12345E",0)
-# Close the file
+# Write a string with a null byte and control character to test handling of special characters.
+myfile.writeat("Stest12345E" + '\0' + '/0', 0)
+
+# Read
+myfile.readat(None, 0)
+
+# Close the file.
 myfile.close()
-try:
-# open file works...
-	myfile=(ABopenfile("testfile.txt",True))
-	myfile.close()
-except:
-	log("File not closed.")
