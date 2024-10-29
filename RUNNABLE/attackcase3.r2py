@@ -5,7 +5,7 @@ if "testfile.txt.a" in listfiles():
 if "testfile.txt.b" in listfiles():
   removefile("testfile.txt.b")
 
-#Create an AB file
+# Create an AB file
 myfile=ABopenfile("testfile.txt",True)  
 # put some valid data in the file.
 myfile.writeat("Stest12345E",0)
