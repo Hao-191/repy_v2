@@ -18,4 +18,3 @@ try:
     myfile.close()
 except:
     myfile.close()
-    log("Failed to write to or read from the B file")
